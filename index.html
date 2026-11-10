@@ -313,16 +313,22 @@
   $("newChat").addEventListener("click", () => location.reload());
 })();
 </script>
-  <style>
-  body > *:not(header):not(#chat):not(footer):not(script):not(style):not(link):not(noscript) {
-    position: fixed !important;
-    left: -9999px !important;
-    top: 0 !important;
-    right: auto !important;
-    bottom: auto !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
+<script>
+(function () {
+  var keep = ['HEADER', 'FOOTER', 'SCRIPT', 'STYLE', 'LINK', 'NOSCRIPT', 'HEAD', 'BODY'];
+  function hide() {
+    document.querySelectorAll('body > *, html > *').forEach(function (el) {
+      if (keep.indexOf(el.tagName) > -1 || el.id === 'chat') return;
+      el.style.setProperty('position', 'fixed', 'important');
+      el.style.setProperty('left', '-9999px', 'important');
+      el.style.setProperty('opacity', '0', 'important');
+      el.style.setProperty('pointer-events', 'none', 'important');
+    });
   }
-  </style>
+  new MutationObserver(hide).observe(document.documentElement, { childList: true, subtree: true });
+  hide();
+  setInterval(hide, 500);
+})();
+</script>
 </body>
 </html>
