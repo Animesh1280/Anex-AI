@@ -72,13 +72,16 @@
     flex: none; width: 32px; height: 32px; border-radius: 9px; display: grid; place-items: center;
     font-size: 13px; font-weight: 700; color: #fff;
     background: linear-gradient(135deg, var(--accent), var(--accent-2));
-  }
-  .msg.user .avatar { background: var(--surface-2); color: var(--muted); border: 1px solid var(--border); }
+  }.msg:not(.user) .avatar {
+  background: url("https://i.ibb.co/VY5p0tQ4/image-9fd3b2b3-1.jpg") center / cover no-repeat;
+  font-size: 0;
+  color: transparent;
+  } .msg.user .avatar { background: var(--surface-2); color: var(--muted); border: 1px solid var(--border); }
   .bubble {
     max-width: 82%; padding: 12px 16px; border-radius: 16px; line-height: 1.6; font-size: 15px;
     white-space: pre-wrap; word-wrap: break-word;
     background: var(--surface); border: 1px solid var(--border);
-  }
+  } 
   .msg.user .bubble { background: linear-gradient(135deg, var(--accent), #4a6fe0); border: 0; color: #fff; }
   .bubble.error { border-color: #7f1d1d; color: #fca5a5; }
 
